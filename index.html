@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Cryptic Castle</title>
+    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'MedievalSharp', cursive;
+            background: linear-gradient(90deg, #4b3621, #2c1e10);
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            text-align: center;
+            padding: 50px;
+            background: repeating-linear-gradient(
+                45deg,
+                #4b3621,
+                #4b3621 10px,
+                #2c1e10 10px,
+                #2c1e10 20px
+            );
+            border: 15px solid #805d34;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+        }
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px #000;
+        }
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 40px;
+            text-shadow: 1px 1px 3px #000;
+        }
+        .button {
+            background: #ffcc00;
+            color: #000;
+            padding: 15px 30px;
+            text-decoration: none;
+            font-size: 1.5rem;
+            border-radius: 5px;
+            border: 2px solid #000;
+            cursor: pointer;
+        }
+        .button:hover {
+            background: #ffd633;
+        }
+        .challenge {
+            margin: 20px auto;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            width: 80%;
+            max-width: 600px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+        .challenge h3 {
+            margin-bottom: 15px;
+        }
+        .challenge input, .challenge button {
+            font-size: 1rem;
+            padding: 10px;
+            margin: 5px;
+            border-radius: 5px;
+            border: none;
+        }
+        .challenge button {
+            background: #ffcc00;
+            color: #000;
+            cursor: pointer;
+        }
+        .password-protected {
+            text-align: center;
+            margin: 40px auto;
+        }
+        .password-protected img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>The Cryptic Castle</h1>
+        <h2>A Quest for the Hidden Treasure</h2>
+        <div class="password-protected">
+            <img src="QmeWytygAFPrz8ce27QK6rbmTkqnRxN43jXYLLk9QmYBuK.jpg" alt="Password Protected Gate">
+        </div>
+        <p>Complete the challenges, gather the pieces of the password, and unlock the treasure!</p>
+        <a href="#challenges" class="button">Enter the Castle</a>
+
+        <div id="challenges">
+            <div class="challenge">
+                <h3>Challenge 1: The Riddle of the Knight</h3>
+                <p>The knight asks: "What has roots as nobody sees, is taller than trees, up, up it goes, and yet it never grows?"</p>
+                <input type="text" id="answer1" placeholder="Your answer">
+                <button onclick="checkAnswer(1, 'mountain')">Submit</button>
+            </div>
+
+            <div class="challenge">
+                <h3>Challenge 2: The Puzzle of the Shield</h3>
+                <p>Arrange the symbols on the shield to form the word "HONOR".</p>
+                <input type="text" id="answer2" placeholder="Your answer">
+                <button onclick="checkAnswer(2, 'honor')">Submit</button>
+            </div>
+
+            <div class="challenge">
+                <h3>Challenge 3: The Code of the Scroll</h3>
+                <p>Decrypt the message: "Uifsf jt b usfbtvsf cfhjoe uif qbttxpse."</p>
+                <input type="text" id="answer3" placeholder="Your answer">
+                <button onclick="checkAnswer(3, 'there is a treasure behind the password')">Submit</button>
+            </div>
+
+            <div class="challenge">
+                <h3>Challenge 4: The Maze of the Minotaur</h3>
+                <p>Solve the maze to find the key to the gate. (Interactive image or link to a maze game)</p>
+                <button onclick="checkAnswer(4, 'maze_key')">Complete Maze</button>
+            </div>
+
+            <div class="challenge">
+                <h3>Challenge 5: The Final Gate</h3>
+                <p>Enter the fragments of the password gathered from previous challenges to unlock the treasure.</p>
+                <input type="text" id="finalPassword" placeholder="Your password">
+                <button onclick="checkPassword()">Unlock</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let passwordParts = ['','','','',''];
+
+        function checkAnswer(challenge, correctAnswer) {
+            const userAnswer = document.getElementById(`answer${challenge}`).value.toLowerCase().trim();
+            if (userAnswer === correctAnswer.toLowerCase()) {
+                alert(`Correct! You have completed Challenge ${challenge}!`);
+                passwordParts[challenge - 1] = correctAnswer[0]; // First letter of the answer as the password fragment
+            } else {
+                alert('Incorrect, try again!');
+            }
+        }
+
+        function checkPassword() {
+            const userPassword = document.getElementById('finalPassword').value;
+            const correctPassword = passwordParts.join('');
+            if (userPassword === correctPassword) {
+                alert('Congratulations! You have unlocked the treasure!');
+            } else {
+                alert('Incorrect password. Complete all challenges to gather the fragments!');
+            }
+        }
+    </script>
+</body>
+</html>
